@@ -1,0 +1,125 @@
+body {
+  font-family: monospace;
+  background-color: #11111b;
+  color: #e0e0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+}
+
+.navbar {
+  display: flex;
+  position: absolute;
+  width: 100vw;
+  /* height: 4rem; */
+  /* margin-bottom: 4rem; */
+  left: 0;
+  top: 0;
+  background-color: #000000;
+  align-items: center;
+}
+
+.navbar-tabs {
+  display: flex;
+  font-size: 16pt;
+  margin: 0;
+  li {
+    list-style: none;
+    height: 3rem;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    border-radius: 1rem 1rem 0 0;
+  }
+  a {
+    color: #e0e0f0;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #fff;
+  }
+}
+
+.current-page {
+  font-weight: 900;
+  background-color: #11111b;
+}
+
+.main-cont {
+  display: flex;
+  gap: 2rem;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 15vw;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.left-panel {
+  min-width: fit-content;
+  h2 {
+    margin: 0;
+  }
+}
+
+#sensor-chart {
+  min-width: 600px;
+  max-width: 900px;
+}
+
+button {
+  background-color: #e0e0f0;
+  color: #11111b;
+  border-radius: 2px;
+  border: none;
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 12pt;
+  padding: 0.3rem 0.8rem;
+}
+
+button:hover:enabled {
+  background-color: #fff;
+}
+
+button:disabled {
+  opacity: 50%;
+}
+
+.chart-title-cont {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+#recording-indicator {
+  color: rgb(237, 25, 43);
+  text-align: end;
+  animation: blinking 0.7s cubic-bezier(0.32, 0, 0.67, 0) infinite alternate;
+}
+
+@keyframes blinking {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+
+.gauge-cont {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+  h2 {
+    text-align: center;
+  }
+  h1 {
+    text-align: center;
+    margin: 0;
+  }
+}

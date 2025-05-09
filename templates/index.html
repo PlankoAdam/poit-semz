@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POIT SemZ</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="https://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
+    <link rel="stylesheet" href="/static/index.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul class="navbar-tabs">
+        <li class="current-page"><a href="/">Live Monitoring</a></li>
+        <li><a href="/archive">Archive</a></li>
+      </ul>
+    </nav>
+    <div class="main-cont">
+      <div class="left-panel">
+        <div class="chart-title-cont">
+          <h1>Live Sensor Data</h1>
+          <h1 id="recording-indicator" hidden>•RECORDING TO DB</h1>
+        </div>
+        <canvas id="sensor-chart"></canvas>
+        <div class="gauge-cont">
+          <div>
+            <h2>Distance</h2>
+            <canvas id="dist-gauge"></canvas>
+            <h1 id="sensor-dist">0cm</h1>
+          </div>
+          <div>
+            <h2>Light Level</h2>
+            <canvas id="light-gauge"></canvas>
+            <h1 id="sensor-light">0</h1>
+          </div>
+        </div>
+        <div>
+          <table id="readings-table">
+            <tr>
+              <th>Timestamp</th>
+              <th>Distance (cm)</th>
+              <th>Light level</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="right-panel">
+        <button id="monitor-btn">Connect</button>
+        <button id="archive-btn" disabled>Start Recording</button>
+        <label for="dist-offset-input">Distance offset (cm)</label>
+        <input id="dist-offset-input" type="number" value="0" />
+        <label for="light-offset-input">Light level offset</label>
+        <input id="light-offset-input" type="number" value="0" />
+      </div>
+    </div>
+
+    <script src="/static/index.js"></script>
+  </body>
+</html>
