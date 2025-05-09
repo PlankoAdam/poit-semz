@@ -5,6 +5,7 @@ import serial
 import time
 import psycopg2
 from datetime import datetime
+import json
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -15,6 +16,8 @@ current_session_id = None
 
 current_distance_offset = 0
 current_light_offset = 0
+
+current_session_data = {}
 
 conn = psycopg2.connect(
 	dbname="semzdb",
@@ -43,11 +46,13 @@ def read_arduino():
 					socketio.emit('sensor_data', latest_data)
 
 					if record_data and current_session_id is not None:
+						ts = datetime.now()
 						cursor.execute(
 							"INSERT INTO sensor_readings (time, session_id, distance_cm, light_level) VALUES (%s, %s, %s, %s)",
-							(datetime.now(), current_session_id, distance, light)
+							(ts, current_session_id, distance, light)
 						)
 						conn.commit()
+						current_session_data["readings"].append({"time":ts.strftime("%d/%m/%Y, %H:%M:%S"),"distance":distance,"light":light})
 		except Exception as e:
 			print("Error:", e)
 			break
@@ -65,27 +70,34 @@ def archive_page():
 
 @socketio.on('update_offsets')
 def update_offsets(data):
-  global current_distance_offset, current_light_offset
-  current_distance_offset = float(data.get('distance_offset', 0.0))
-  current_light_offset = float(data.get('light_offset', 0.0))
+	global current_distance_offset, current_light_offset
+	current_distance_offset = float(data.get('distance_offset', 0.0))
+	current_light_offset = float(data.get('light_offset', 0.0))
 
 @socketio.on('toggle_recording')
 def handle_toggle():
-	global record_data, current_session_id, current_distance_offset, current_light_offset
+	global record_data, current_session_id, current_distance_offset, current_light_offset, current_session_data
 	record_data = not record_data
 
 	if record_data:
 		# Insert a new session with offsets
+		ts = datetime.now()
 		cursor.execute("""
 			INSERT INTO recording_sessions (start_time, distance_offset, light_offset)
 			VALUES (%s, %s, %s)
 			RETURNING id
-		""", (datetime.now(), current_distance_offset, current_light_offset))
+		""", (ts, current_distance_offset, current_light_offset))
 
 		current_session_id = cursor.fetchone()[0]
 		conn.commit()
+	
+		current_session_data = {"id":current_session_id,"start_time":ts.strftime("%d/%m/%Y, %H:%M:%S"),"distance_offset":current_distance_offset,"light_offset":current_light_offset,"readings":[]}
+	
 		print(f"Started session {current_session_id} with offsets: distance={current_distance_offset}, light={current_light_offset}")
 	else:
+		with open("data.txt", "a") as f:
+			f.write(json.dumps(current_session_data))
+			f.write("\n")
 		print(f"Stopped session {current_session_id}")
 		current_session_id = None
 
