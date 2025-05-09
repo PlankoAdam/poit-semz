@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POIT SemZ</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <link rel="stylesheet" href="/static/index.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul class="navbar-tabs">
+        <li><a href="/">Live Monitoring</a></li>
+        <li class="current-page"><a href="/archive">Archive</a></li>
+      </ul>
+    </nav>
+    <div class="main-cont">
+      <div class="left-panel">
+        <div class="chart-title-cont">
+          <h1 id="chart-title">Archived Data</h1>
+          <h1 id="recording-indicator" hidden>•RECORDING TO DB</h1>
+        </div>
+        <canvas id="sensor-chart"></canvas>
+        <h2 id="archive-dist-offset">Distance offset: 0cm</h2>
+        <h2 id="archive-light-offset">Light level offset: 0</h2>
+        <div>
+          <table id="readings-table">
+            <tr>
+              <th>Timestamp</th>
+              <th>Distance (cm)</th>
+              <th>Light level</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="right-panel">
+        <label for="sessions-select">Archived records:</label>
+        <select name="sessions" id="sessions-select">
+          <option value="">Select session</option>
+        </select>
+      </div>
+    </div>
+
+    <script src="/static/archive.js"></script>
+  </body>
+</html>
