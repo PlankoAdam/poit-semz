@@ -37,7 +37,7 @@ const chart = new Chart(
 function update_table() {
   let target = document.getElementById("readings-table");
   target.innerHTML =
-    "<tr><th>Timestamp</th><th>Distance (cm)</th><th>Light level</th></tr>";
+    "<thead><th>Timestamp</th><th>Distance (cm)</th><th>Light level</th></thead>";
 
   for (let i = 0; i < labels.length; i++) {
     target.innerHTML += `<tr><td>${labels[i]}</td><td>${distanceData[i]}</td><td>${lightData[i]}</td></tr>`;

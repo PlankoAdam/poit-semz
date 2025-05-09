@@ -16,42 +16,44 @@
         <li><a href="/archive">Archive</a></li>
       </ul>
     </nav>
-    <div class="main-cont">
-      <div class="left-panel">
-        <div class="chart-title-cont">
-          <h1>Live Sensor Data</h1>
-          <h1 id="recording-indicator" hidden>•RECORDING TO DB</h1>
-        </div>
-        <canvas id="sensor-chart"></canvas>
-        <div class="gauge-cont">
-          <div>
-            <h2>Distance</h2>
-            <canvas id="dist-gauge"></canvas>
-            <h1 id="sensor-dist">0cm</h1>
+    <div class="outer-cont">
+      <div class="main-cont">
+        <div class="left-panel">
+          <div class="chart-title-cont">
+            <h1>Live Sensor Data</h1>
+            <h1 id="recording-indicator" hidden>•RECORDING TO DB</h1>
           </div>
-          <div>
-            <h2>Light Level</h2>
-            <canvas id="light-gauge"></canvas>
-            <h1 id="sensor-light">0</h1>
+          <canvas id="sensor-chart"></canvas>
+          <div class="gauge-cont">
+            <div>
+              <h2>Distance</h2>
+              <canvas id="dist-gauge"></canvas>
+              <h1 id="sensor-dist">0cm</h1>
+            </div>
+            <div>
+              <h2>Light Level</h2>
+              <canvas id="light-gauge"></canvas>
+              <h1 id="sensor-light">0</h1>
+            </div>
           </div>
         </div>
-        <div>
-          <table id="readings-table">
-            <tr>
-              <th>Timestamp</th>
-              <th>Distance (cm)</th>
-              <th>Light level</th>
-            </tr>
-          </table>
+        <div class="right-panel">
+          <button id="monitor-btn">Connect</button>
+          <button id="archive-btn" disabled>Start Recording</button>
+          <label for="dist-offset-input">Distance offset (cm)</label>
+          <input id="dist-offset-input" type="number" value="0" />
+          <label for="light-offset-input">Light level offset</label>
+          <input id="light-offset-input" type="number" value="0" />
         </div>
       </div>
-      <div class="right-panel">
-        <button id="monitor-btn">Connect</button>
-        <button id="archive-btn" disabled>Start Recording</button>
-        <label for="dist-offset-input">Distance offset (cm)</label>
-        <input id="dist-offset-input" type="number" value="0" />
-        <label for="light-offset-input">Light level offset</label>
-        <input id="light-offset-input" type="number" value="0" />
+      <div class="table-cont">
+        <table id="readings-table">
+          <tr>
+            <th>Timestamp</th>
+            <th>Distance (cm)</th>
+            <th>Light level</th>
+          </tr>
+        </table>
       </div>
     </div>
 

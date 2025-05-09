@@ -47,6 +47,11 @@ body {
   background-color: #11111b;
 }
 
+.outer-cont {
+  display: flex;
+  flex-direction: column;
+}
+
 .main-cont {
   display: flex;
   gap: 2rem;
@@ -122,4 +127,35 @@ button:disabled {
     text-align: center;
     margin: 0;
   }
+}
+
+.table-cont {
+  margin-top: 2rem;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 12pt;
+}
+
+thead {
+  background-color: #39396a;
+}
+
+tbody:nth-child(odd) {
+  background-color: #303049;
+}
+
+tbody:nth-child(even) {
+  background-color: #11111b;
+}
+
+th {
+  padding: 0.5rem;
+  text-align: left;
+  min-width: 8rem;
+}
+
+td {
+  padding: 0.5rem;
 }

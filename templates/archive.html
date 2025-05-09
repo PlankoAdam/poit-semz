@@ -15,30 +15,32 @@
         <li class="current-page"><a href="/archive">Archive</a></li>
       </ul>
     </nav>
-    <div class="main-cont">
-      <div class="left-panel">
-        <div class="chart-title-cont">
-          <h1 id="chart-title">Archived Data</h1>
-          <h1 id="recording-indicator" hidden>•RECORDING TO DB</h1>
+    <div class="outer-cont">
+      <div class="main-cont">
+        <div class="left-panel">
+          <div class="chart-title-cont">
+            <h1 id="chart-title">Archived Data</h1>
+            <h1 id="recording-indicator" hidden>•RECORDING TO DB</h1>
+          </div>
+          <canvas id="sensor-chart"></canvas>
+          <h2 id="archive-dist-offset">Distance offset: 0cm</h2>
+          <h2 id="archive-light-offset">Light level offset: 0</h2>
         </div>
-        <canvas id="sensor-chart"></canvas>
-        <h2 id="archive-dist-offset">Distance offset: 0cm</h2>
-        <h2 id="archive-light-offset">Light level offset: 0</h2>
-        <div>
-          <table id="readings-table">
-            <tr>
-              <th>Timestamp</th>
-              <th>Distance (cm)</th>
-              <th>Light level</th>
-            </tr>
-          </table>
+        <div class="right-panel">
+          <label for="sessions-select">Archived records:</label>
+          <select name="sessions" id="sessions-select">
+            <option value="">Select session</option>
+          </select>
         </div>
       </div>
-      <div class="right-panel">
-        <label for="sessions-select">Archived records:</label>
-        <select name="sessions" id="sessions-select">
-          <option value="">Select session</option>
-        </select>
+      <div class="table-cont">
+        <table id="readings-table">
+          <thead>
+            <th>Timestamp</th>
+            <th>Distance (cm)</th>
+            <th>Light level</th>
+          </thead>
+        </table>
       </div>
     </div>
 
